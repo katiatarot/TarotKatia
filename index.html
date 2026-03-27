@@ -1,0 +1,1309 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso de Tarot Egípcio - Kátia Henriques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --color-primary: #3f1c47;
+            --color-secondary: #c6c3c6;
+            --color-accent-primary: #f093ff;
+            --color-accent-secondary: #aa096a;
+            --color-accent-tertiary: #6b056a;
+            --color-accent-quaternary: #b532a7;
+            --color-accent-quinary: #981089;
+            --color-text-bright: #f5f2fa;
+            --color-text-muted: #c6c3c6;
+            --spacing-sm: 1rem;
+            --spacing-md: 1.5rem;
+            --spacing-lg: 2rem;
+            --spacing-xl: 3rem;
+            --spacing-2xl: 4rem;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-text-bright);
+            background: linear-gradient(135deg, var(--color-primary) 0%, #2a1230 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-md);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            margin-bottom: var(--spacing-md);
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-quaternary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        h1 { font-size: 3.5rem; }
+        h2 { font-size: 2.8rem; }
+        h3 { font-size: 1.8rem; }
+        h4 { font-size: 1.4rem; }
+
+        p {
+            margin-bottom: var(--spacing-md);
+            font-size: 1.1rem;
+        }
+
+        a {
+            color: var(--color-accent-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--color-accent-secondary);
+        }
+
+        button, .btn {
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-secondary));
+            color: var(--color-primary);
+            border: none;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(240, 147, 255, 0.3);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-accent-primary), transparent);
+            margin: var(--spacing-2xl) 0;
+            opacity: 0.5;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(63, 28, 71, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem var(--spacing-md);
+            z-index: 1000;
+            transform: translateY(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        nav.visible {
+            transform: translateY(0);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav img {
+            height: 40px;
+            width: auto;
+        }
+
+        nav a {
+            margin: 0 1.5rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        /* HERO */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(240, 147, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+            margin-top: var(--spacing-2xl);
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: var(--color-text-muted);
+            margin-bottom: var(--spacing-lg);
+            line-height: 1.8;
+        }
+
+        .hero-bullets {
+            list-style: none;
+            margin: var(--spacing-lg) 0;
+        }
+
+        .hero-bullets li {
+            padding: 0.8rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.05rem;
+        }
+
+        .hero-bullets li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--color-accent-primary);
+            font-size: 1.3rem;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(240, 147, 255, 0.2);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .micro-text {
+            font-size: 0.85rem;
+            color: var(--color-text-muted);
+            margin-top: var(--spacing-md);
+            font-style: italic;
+        }
+
+        /* CARDS E LAYOUTS */
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: var(--spacing-lg);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(240, 147, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent-primary);
+            box-shadow: 0 20px 40px rgba(240, 147, 255, 0.15);
+        }
+
+        .color-1 { background: linear-gradient(135deg, rgba(170, 9, 106, 0.2), rgba(170, 9, 106, 0.1)); border-left: 4px solid #aa096a; }
+        .color-2 { background: linear-gradient(135deg, rgba(107, 5, 106, 0.2), rgba(107, 5, 106, 0.1)); border-left: 4px solid #6b056a; }
+        .color-3 { background: linear-gradient(135deg, rgba(181, 50, 167, 0.2), rgba(181, 50, 167, 0.1)); border-left: 4px solid #b532a7; }
+        .color-4 { background: linear-gradient(135deg, rgba(152, 16, 137, 0.2), rgba(152, 16, 137, 0.1)); border-left: 4px solid #981089; }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        /* SEÇÃO COM IMAGEM LADO A LADO */
+        .section-with-image {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .section-with-image h2,
+        .section-with-image h3 {
+            background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-quaternary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-with-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(240, 147, 255, 0.2);
+        }
+
+        /* SEÇÃO DIVISOR COM IMAGEM */
+        .section-divider {
+            text-align: center;
+            margin: var(--spacing-2xl) 0;
+            padding: var(--spacing-2xl) 0;
+        }
+
+        .section-divider img {
+            max-height: 300px;
+            width: auto;
+            opacity: 0.9;
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* MÉTODO */
+        .method-step {
+            display: flex;
+            gap: var(--spacing-lg);
+            margin-bottom: var(--spacing-2xl);
+            padding: var(--spacing-lg);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 15px;
+            border-left: 4px solid var(--color-accent-primary);
+        }
+
+        .method-number {
+            min-width: 60px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .method-content h4 {
+            margin-bottom: var(--spacing-sm);
+        }
+
+        /* LISTA COM ÍCONES */
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            padding: var(--spacing-md);
+            margin-bottom: var(--spacing-md);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 3px solid var(--color-accent-primary);
+            display: flex;
+            gap: var(--spacing-md);
+            align-items: flex-start;
+        }
+
+        .feature-list li::before {
+            content: '★';
+            color: var(--color-accent-primary);
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        /* ACORDEÃO */
+        .accordion {
+            margin: var(--spacing-lg) 0;
+        }
+
+        .accordion-item {
+            margin-bottom: var(--spacing-md);
+            border: 1px solid rgba(240, 147, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background: linear-gradient(135deg, rgba(170, 9, 106, 0.1), rgba(181, 50, 167, 0.1));
+            padding: var(--spacing-lg);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--color-accent-primary);
+        }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, rgba(170, 9, 106, 0.2), rgba(181, 50, 167, 0.2));
+        }
+
+        .accordion-header h4 {
+            margin: 0;
+        }
+
+        .accordion-icon {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+
+        .accordion-content p {
+            padding: var(--spacing-lg);
+        }
+
+        /* DEPOIMENTOS */
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--color-accent-primary);
+            padding: var(--spacing-lg);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 40px rgba(240, 147, 255, 0.15);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: var(--spacing-md);
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--color-accent-primary);
+            background: none;
+            -webkit-text-fill-color: unset;
+        }
+
+        /* LOGO */
+        .logo-section {
+            text-align: center;
+            margin: var(--spacing-2xl) 0;
+        }
+
+        .logo-section img {
+            max-height: 150px;
+            width: auto;
+            margin: var(--spacing-lg) 0;
+        }
+
+        /* FORMULÁRIO */
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+            color: var(--color-text-bright);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(240, 147, 255, 0.3);
+            border-radius: 8px;
+            color: var(--color-text-bright);
+            font-family: 'Montserrat', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--color-accent-primary);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(240, 147, 255, 0.2);
+        }
+
+        .form-group input::placeholder {
+            color: rgba(245, 242, 250, 0.5);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-lg);
+        }
+
+        /* SEÇÕES */
+        section {
+            padding: var(--spacing-2xl) 0;
+            border-bottom: 1px solid rgba(240, 147, 255, 0.1);
+        }
+
+        section:last-child {
+            border-bottom: none;
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            h3 { font-size: 1.4rem; }
+
+            .hero-grid,
+            .section-with-image,
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            nav .container {
+                flex-direction: column;
+                gap: var(--spacing-md);
+            }
+
+            nav a {
+                margin: 0.5rem 0;
+            }
+        }
+
+        /* STICKY CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .sticky-cta {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <div class="container">
+            <img src="logo-branca.png" alt="Kátia Henriques" style="height: 50px; width: auto;">
+            <div>
+                <a href="#sobre">Sobre</a>
+                <a href="#depoimentos">Depoimentos</a>
+                <a href="#faq">FAQ</a>
+                <a href="#formulario">Inscrição</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SEÇÃO 1: HERO -->
+    <section class="hero">
+        <div class="container hero-content">
+            <div class="hero-grid">
+                <div class="hero-text">
+                    <h1>Tarot Egípcio com Método e Segurança</h1>
+                    <p class="subtitle">Aprenda a ler com estrutura, responsabilidade e confiança. Uma formação completa para transformar sua relação com o Tarot.</p>
+                    
+                    <ul class="hero-bullets">
+                        <li>15 encontros ao vivo com prática em cada aula</li>
+                        <li>Método exclusivo de interpretação egípcia</li>
+                        <li>Turma pequena para acompanhamento próximo</li>
+                        <li>Acesso às gravações por 1 ano</li>
+                    </ul>
+
+                    <button onclick="document.getElementById('formulario').scrollIntoView({behavior: 'smooth'})">Quero Participar</button>
+                    <p class="micro-text">⛰ Carrinho aberto por 16 dias | 🔐 Turma limitada a 12 pessoas<br>📅 Início: 07.04 (terça-feira) | 🕒 Sempre às terças-feiras</p>
+                </div>
+                <div class="hero-image">
+                    <img src="73-IMG_6725.webp" alt="Kátia com cartas de tarot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: FILTRO -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Isso não é para você se...</h2>
+            <div class="grid-2" style="margin-top: var(--spacing-2xl);">
+                <div class="card" style="background: linear-gradient(135deg, rgba(170, 9, 106, 0.15), rgba(170, 9, 106, 0.08)); border-left: 4px solid #aa096a;">
+                    <h4>Quer aprender "tudo" sobre Tarot em uma semana</h4>
+                    <p>Esta formação é profunda, exige dedicação e prática consistente. Não é um curso rápido.</p>
+                </div>
+                <div class="card" style="background: linear-gradient(135deg, rgba(107, 5, 106, 0.15), rgba(107, 5, 106, 0.08)); border-left: 4px solid #6b056a;">
+                    <h4>Busca respostas mágicas para problemas reais</h4>
+                    <p>O Tarot é uma ferramenta de autoconhecimento e orientação. Não substitui terapia ou decisões pessoais.</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <p class="text-center" style="font-size: 1.2rem; margin-top: var(--spacing-2xl);"><strong>Se você quer aprender com método, responsabilidade e profundidade, você está no lugar certo.</strong></p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: DOR DO ALUNO -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Se você trava na leitura, isso normalmente acontece por três motivos</h2>
+            <div class="grid-3" style="margin-top: var(--spacing-2xl);">
+                <div class="card color-1">
+                    <h3>Você tenta acertar o significado "certo" da carta</h3>
+                    <p>E isso gera ansiedade, excesso de controle e insegurança.</p>
+                </div>
+                <div class="card color-2">
+                    <h3>Você não tem uma sequência clara de interpretação</h3>
+                    <p>Cada tiragem parece confusa, solta ou difícil de organizar.</p>
+                </div>
+                <div class="card color-3">
+                    <h3>Você ainda não treinou com método e correção</h3>
+                    <p>Sem prática guiada, a insegurança se repete e vira padrão.</p>
+                </div>
+            </div>
+            <div class="divider"></div>
+            <p class="text-center" style="font-size: 1.2rem; margin-top: var(--spacing-2xl);"><strong>Tarot sem método vira intuição confusa.<br>Com método, vira leitura clara.</strong></p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 4: TRANSFORMAÇÃO -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">O que você vai conseguir com essa formação</h2>
+            <div class="section-with-image" style="margin-top: var(--spacing-2xl);">
+                <div>
+                    <ul class="feature-list">
+                        <li><strong>Estrutura clara</strong> - Saber exatamente como conduzir uma leitura do início ao fim</li>
+                        <li><strong>Segurança</strong> - Interpretar com confiança, sem medo de errar</li>
+                        <li><strong>Método egípcio</strong> - Aprender a leitura simbólica baseada nos arquétipos</li>
+                        <li><strong>Prática orientada</strong> - Receber feedback e correção em tempo real</li>
+                        <li><strong>Responsabilidade ética</strong> - Entender como orientar sem criar dependência</li>
+                        <li><strong>Comunidade</strong> - Integrar-se a um grupo de aprendizes comprometidos</li>
+                    </ul>
+                </div>
+                <img src="65-IMG_6691.webp" alt="Kátia com carta The High Priest">
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 5: COMO FUNCIONA -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">A Formação em Tarot Egípcio funciona assim</h2>
+            <div class="grid-3" style="margin-top: var(--spacing-2xl);">
+                <div class="card color-1 text-center">
+                    <h3>15 encontros ao vivo</h3>
+                </div>
+                <div class="card color-2 text-center">
+                    <h3>120 minutos por encontro</h3>
+                </div>
+                <div class="card color-3 text-center">
+                    <h3>Prática em todas as aulas</h3>
+                </div>
+                <div class="card color-4 text-center">
+                    <h3>Conteúdo profundo com aplicação real</h3>
+                </div>
+                <div class="card color-1 text-center">
+                    <h3>Turma pequena para acompanhamento próximo</h3>
+                </div>
+                <div class="card color-2 text-center">
+                    <h3>Acesso às gravações por 1 ano</h3>
+                </div>
+            </div>
+            <p style="margin-top: var(--spacing-2xl); text-align: center; font-size: 1.1rem;">Você não vai apenas assistir a aulas.<br>Você vai entrar em uma jornada de aprendizado em que cada encontro aprofunda a sua leitura, fortalece sua presença e amplia sua segurança para interpretar o Tarot com responsabilidade.</p>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 6: MÉTODO -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">O método que dá segurança à sua leitura</h2>
+            <p class="text-center subtitle">A metodologia da Kátia foi construída para conduzir o aluno do sentir ao compreender — e do compreender ao orientar.</p>
+
+            <div style="max-width: 900px; margin: var(--spacing-2xl) auto;">
+                <div class="method-step">
+                    <div class="method-number" style="background: linear-gradient(135deg, #aa096a, #b532a7);">1</div>
+                    <div class="method-content">
+                        <h4>Leitura do símbolo</h4>
+                        <p>Você aprende a perceber o que o arquétipo comunica antes de cair em significados prontos.</p>
+                    </div>
+                </div>
+
+                <div class="method-step">
+                    <div class="method-number" style="background: linear-gradient(135deg, #6b056a, #981089);">2</div>
+                    <div class="method-content">
+                        <h4>Sequência da tiragem</h4>
+                        <p>Você entende como as cartas conversam entre si e como organizar a mensagem.</p>
+                    </div>
+                </div>
+
+                <div class="method-step">
+                    <div class="method-number" style="background: linear-gradient(135deg, #b532a7, #aa096a);">3</div>
+                    <div class="method-content">
+                        <h4>Conexão intuitiva</h4>
+                        <p>Você desenvolve percepção sem se perder em interpretações soltas.</p>
+                    </div>
+                </div>
+
+                <div class="method-step">
+                    <div class="method-number" style="background: linear-gradient(135deg, #981089, #6b056a);">4</div>
+                    <div class="method-content">
+                        <h4>Interpretação ética</h4>
+                        <p>Você aprende a orientar com clareza, responsabilidade e sem criar dependência.</p>
+                    </div>
+                </div>
+
+                <div class="method-step">
+                    <div class="method-number" style="background: linear-gradient(135deg, #f093ff, #b532a7);">5</div>
+                    <div class="method-content">
+                        <h4>Tradução prática</h4>
+                        <p>Você transforma leitura em direção concreta, compreensível e útil para a vida real.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: var(--spacing-2xl); background: rgba(240, 147, 255, 0.1); border-left: 4px solid var(--color-accent-primary);">
+                <h4>Estrutura de cada aula (120 minutos)</h4>
+                <ul class="feature-list" style="margin-top: var(--spacing-md);">
+                    <li><strong>Abertura</strong> - Meditação e preparação do campo</li>
+                    <li><strong>Conteúdo</strong> - Aula teórica e simbólica</li>
+                    <li><strong>Prática</strong> - Exercícios em duplas ou grupos</li>
+                    <li><strong>Feedback</strong> - Correção e orientação individual</li>
+                    <li><strong>Fechamento</strong> - Integração e próximos passos</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 7: CONTEÚDO -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">O que você vai aprender</h2>
+            
+            <div class="section-with-image" style="margin-top: var(--spacing-2xl); grid-template-columns: 1fr 1.2fr;">
+                <img src="cursodetarotimagem.png" alt="Arcanos Maiores" style="border-radius: 15px; box-shadow: 0 20px 60px rgba(240, 147, 255, 0.2);">
+                <div>
+                    <div class="grid-3" style="gap: var(--spacing-lg);">
+                        <div class="card color-1">
+                            <h3>Fundação</h3>
+                    <ul style="list-style: none; margin-top: var(--spacing-md);">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Postura ética de leitura
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Abertura e fechamento de campo
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Estrutura de interpretação
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Leitura simbólica com base
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Presença oracular
+                        </li>
+                    </ul>
+                </div>
+
+                        <div class="card color-2">
+                            <h3>Arcanos</h3>
+                    <ul style="list-style: none; margin-top: var(--spacing-md);">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            22 Arcanos Maiores
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Luz e sombra de cada arcano
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Leitura arquetípica
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Aplicação prática em tiragens
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Atendimentos
+                        </li>
+                    </ul>
+                </div>
+
+                        <div class="card color-3">
+                            <h3>Técnicas</h3>
+                    <ul style="list-style: none; margin-top: var(--spacing-md);">
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Condução de leitura
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Organização das mensagens
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Perguntas e direcionamento
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Leitura para si e outros
+                        </li>
+                        <li style="padding: 0.5rem 0; padding-left: 1.5rem; position: relative;">
+                            <span style="position: absolute; left: 0; color: var(--color-accent-primary);">→</span>
+                            Postura profissional
+                        </li>
+                    </ul>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 8: BÔNUS -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Bônus inclusos na formação</h2>
+            
+            <div class="section-with-image" style="margin-top: var(--spacing-2xl); grid-template-columns: 1fr 1.2fr;">
+                <img src="Cursotarot2.png" alt="Câmara Sagrada" style="border-radius: 15px; box-shadow: 0 20px 60px rgba(240, 147, 255, 0.2);">
+                <div>
+                    <div class="grid-3" style="gap: var(--spacing-lg);">
+                    <div class="card color-1">
+                        <h3>Desmistificando suas crenças</h3>
+                        <p>Um conteúdo bônus para ajudar você a romper bloqueios, crenças e inseguranças que podem travar sua leitura e sua atuação.</p>
+                    </div>
+
+                    <div class="card color-2">
+                        <h3>Acesso por 1 ano</h3>
+                        <p>Aulas gravadas para rever, consolidar o conteúdo, praticar com calma e aprofundar sua evolução no seu tempo.</p>
+                    </div>
+
+                    <div class="card color-4" style="border-left: 4px solid #981089;">
+                        <h3>Leitura assistida</h3>
+                        <p>Você realiza a leitura e recebe acompanhamento, direção e ajustes ao vivo para ganhar segurança real na prática.</p>
+                        <p style="font-size: 0.85rem; margin-top: var(--spacing-md); font-style: italic;">Disponível para quem entrar nas primeiras 24 horas, sujeito à capacidade limitada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 9: SOBRE KÁTIA -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="text-center">Quem vai te guiar nesta formação</h2>
+            <div class="section-with-image" style="margin-top: var(--spacing-2xl);">
+                <img src="77-IMG_6744.webp" alt="Kátia Henriques">
+                <div>
+                    <h3>Kátia Henriques</h3>
+                    <p><strong>Especialista em Tarot Egípcio e Desenvolvimento Humano</strong></p>
+                    <p>Kátia é uma leitora de Tarot com mais de 15 anos de experiência. Sua metodologia combina o conhecimento ancestral dos Arcanos Egípcios com técnicas modernas de coaching e autoconhecimento.</p>
+                    
+                    <ul class="feature-list" style="margin-top: var(--spacing-lg);">
+                        <li><strong>Formação em Tarot Egípcio</strong> - Estudou com mestres da tradição egípcia</li>
+                        <li><strong>Prática clínica</strong> - Mais de 5.000 atendimentos realizados</li>
+                        <li><strong>Metodologia própria</strong> - Desenvolveu um sistema único de interpretação</li>
+                        <li><strong>Ética e responsabilidade</strong> - Acredita que o Tarot é ferramenta de orientação, não de predição</li>
+                    </ul>
+
+                    <p style="margin-top: var(--spacing-lg); font-style: italic; color: var(--color-text-muted);">"Minha missão é ajudar pessoas a desenvolver sua própria intuição e capacidade de leitura com segurança, método e responsabilidade."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 10: DEPOIMENTOS -->
+    <section id="depoimentos">
+        <div class="container">
+            <h2 class="text-center">O que dizem os alunos</h2>
+            <div class="grid-2" style="margin-top: var(--spacing-2xl);">
+                <div class="testimonial-card" style="border-left-color: #aa096a; background: rgba(170, 9, 106, 0.08);">
+                    <p class="testimonial-text">"Eu já tinha contato com o Tarot, mas faltava estrutura. Aqui eu comecei a entender como organizar uma leitura de verdade. Isso me deu muito mais segurança."</p>
+                    <p class="testimonial-author">— Aluna da Formação</p>
+                </div>
+
+                <div class="testimonial-card" style="border-left-color: #6b056a; background: rgba(107, 5, 106, 0.08);">
+                    <p class="testimonial-text">"O curso é profundo e, ao mesmo tempo, muito claro. Cada aula revela camadas que eu nunca tinha conseguido perceber estudando sozinha."</p>
+                    <p class="testimonial-author">— Aluna da Formação</p>
+                </div>
+
+                <div class="testimonial-card" style="border-left-color: #b532a7; background: rgba(181, 50, 167, 0.08);">
+                    <p class="testimonial-text">"A metodologia da Kátia faz a gente sair da decoreba e entrar na leitura com consciência. Eu comecei a me sentir capaz de ler para outras pessoas com responsabilidade."</p>
+                    <p class="testimonial-author">— Aluna da Formação</p>
+                </div>
+
+                <div class="testimonial-card" style="border-left-color: #981089; background: rgba(152, 16, 137, 0.08);">
+                    <p class="testimonial-text">"Não é só um curso de Tarot. É um processo de expansão. As aulas são reveladoras, práticas e muito bem conduzidas."</p>
+                    <p class="testimonial-author">— Aluna da Formação</p>
+                </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 11: HOTMART -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Como funciona a plataforma</h2>
+            <div class="grid-2" style="margin-top: var(--spacing-2xl);">
+                <div class="card color-1">
+                    <h3>Hotmart</h3>
+                    <p>A formação é entregue através da plataforma Hotmart, a maior plataforma de cursos digitais da América Latina.</p>
+                    <ul class="feature-list" style="margin-top: var(--spacing-md);">
+                        <li>Acesso imediato após a compra</li>
+                        <li>Plataforma segura e confiável</li>
+                        <li>Suporte técnico 24/7</li>
+                    </ul>
+                </div>
+
+                <div class="card color-2">
+                    <h3>Área de Membros</h3>
+                    <p>Você terá acesso a uma área exclusiva com todos os materiais, vídeos e recursos da formação.</p>
+                    <ul class="feature-list" style="margin-top: var(--spacing-md);">
+                        <li>Aulas gravadas em HD</li>
+                        <li>Materiais de apoio em PDF</li>
+                        <li>Comunidade de alunos</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 12: OFERTA E CONDIÇÕES -->
+    <section>
+        <div class="container">
+            <h2 class="text-center">Oferta Especial de Lançamento</h2>
+            
+            <div style="max-width: 900px; margin: var(--spacing-2xl) auto; background: rgba(240, 147, 255, 0.08); border: 2px solid var(--color-accent-primary); border-radius: 15px; padding: var(--spacing-2xl);">
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: var(--spacing-lg); color: var(--color-text-bright);">
+                    Hoje, uma sessão individual comigo, de uma hora, tem o valor de <strong>R$ 307,00</strong>. Se fôssemos ter 15 encontros, estaríamos falando de um investimento de mais de <strong>R$ 4.700</strong> para ter acesso a esse conhecimento de forma pontual.
+                </p>
+                
+                <p style="font-size: 1.05rem; line-height: 1.8; margin-bottom: var(--spacing-lg); color: var(--color-text-bright);">
+                    Mas o meu objetivo aqui não é te atender. É te <strong>FORMAR</strong>. É te dar autonomia para que você nunca mais dependa de ninguém para ler o campo. Gerar uma renda extra ou uma nova profissão.
+                </p>
+                
+                <div style="background: linear-gradient(135deg, rgba(170, 9, 106, 0.2), rgba(181, 50, 167, 0.2)); border-left: 4px solid var(--color-accent-primary); padding: var(--spacing-lg); border-radius: 10px; margin: var(--spacing-2xl) 0;">
+                    <p style="font-size: 1.3rem; font-weight: 600; color: var(--color-accent-primary); margin-bottom: var(--spacing-md);">Seu investimento para transformar a sua vida:</p>
+                    <h3 style="font-size: 3rem; margin-bottom: var(--spacing-md);">R$ 1.997,00</h3>
+                    <p style="font-size: 0.95rem; color: var(--color-text-muted);">À vista ou 12x no cartão de crédito*</p>
+                    <p style="font-size: 0.85rem; color: var(--color-text-muted); font-style: italic; margin-top: 0.5rem;">*Juros cobrados direto pela plataforma</p>
+                </div>
+                
+                <p style="font-size: 1.05rem; line-height: 1.8; color: var(--color-text-bright);">
+                    Além disso, esta será a única turma neste valor, a próxima já estará com o preço mais ajustado à realidade.
+                </p>
+            </div>
+            
+            <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                <button onclick="document.getElementById('formulario').scrollIntoView({behavior: 'smooth'})" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Garantir Minha Vaga Agora</button>
+            </div>
+            
+            <h3 class="text-center" style="margin-top: var(--spacing-2xl);">O que você recebe:</h3>
+            <div class="grid-3" style="margin-top: var(--spacing-2xl);">
+                <div class="condition-item card" style="background: linear-gradient(135deg, rgba(170, 9, 106, 0.15), rgba(170, 9, 106, 0.08)); border-left: 4px solid #aa096a;">
+                    <strong>16 dias</strong>
+                    <p>Carrinho aberto por este período</p>
+                </div>
+                <div class="condition-item card" style="background: linear-gradient(135deg, rgba(107, 5, 106, 0.15), rgba(107, 5, 106, 0.08)); border-left: 4px solid #6b056a;">
+                    <strong>12 pessoas</strong>
+                    <p>Turma limitada para preservar o campo</p>
+                </div>
+                <div class="condition-item card" style="background: linear-gradient(135deg, rgba(181, 50, 167, 0.15), rgba(181, 50, 167, 0.08)); border-left: 4px solid #b532a7;">
+                    <strong>Comunidade</strong>
+                    <p>Acompanhamento e integração entre alunos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 13: FORMULÁRIO -->
+    <section id="formulario">
+        <div class="container">
+            <h2 class="text-center">Garanta sua vaga agora</h2>
+             <p style="font-size: 1.1rem; margin-bottom: var(--spacing-lg);">Preencha seus dados para que o nosso time entre em contato com você com o link de pagamento.</p>>
+
+            <div style="max-width: 600px; margin: 0 auto;">
+                <form id="leadForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome">Nome completo *</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="telefone">Telefone/WhatsApp</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="pagamento">Forma de pagamento preferida</label>
+                            <select id="pagamento" name="pagamento">
+                                <option value="">Selecione...</option>
+                                <option value="pix">PIX</option>
+                                <option value="cartao">Cartão de Crédito</option>
+                                <option value="boleto">Boleto</option>
+                                <option value="parcelado">Parcelado</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="origem">Como você nos conheceu?</label>
+                        <select id="origem" name="origem">
+                            <option value="">Selecione...</option>
+                            <option value="instagram">Instagram</option>
+                            <option value="indicacao">Indicação</option>
+                            <option value="google">Google</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" style="width: 100%; margin-top: var(--spacing-lg);">Enviar Inscrição</button>
+                    <p style="font-size: 0.85rem; text-align: center; margin-top: var(--spacing-md); color: var(--color-text-muted);">Seus dados estão seguros conosco</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 14: FAQ -->
+    <section id="faq">
+        <div class="container">
+            <h2 class="text-center">Perguntas Frequentes</h2>
+            
+            <div class="accordion" style="max-width: 800px; margin: var(--spacing-2xl) auto;">
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Qual é o horário dos encontros?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Os encontros acontecem às terças-feiras às 19h30 (horário de Brasília), com duração de 120 minutos. As aulas são gravadas e você terá acesso às gravações por 1 ano.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Preciso ter experiência prévia com Tarot?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Não é obrigatório, mas é recomendado ter algum contato com Tarot. Se você é iniciante, a formação é estruturada para começar do zero. Se já tem experiência, vai aprofundar e estruturar seu conhecimento.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Quanto tempo leva a formação?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>A formação tem 15 encontros ao vivo, o que corresponde a aproximadamente 4 meses. Após o término, você terá acesso às gravações por 1 ano para revisar e aprofundar.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Posso assistir as aulas depois se perder alguma?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sim! Todas as aulas são gravadas e você terá acesso às gravações por 1 ano. Você pode assistir no seu próprio ritmo, quantas vezes quiser.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Como é a prática durante as aulas?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Cada aula tem um tempo dedicado à prática. Você fará exercícios em duplas ou pequenos grupos, e receberá feedback da Kátia e dos colegas. É um aprendizado vivencial e prático.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Qual é a política de reembolso?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Oferecemos garantia de 7 dias de reembolso total. Se você não se sentir satisfeito nos primeiros 7 dias, devolvemos 100% do seu investimento, sem perguntas.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Vou receber certificado?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sim! Ao completar a formação, você receberá um certificado de conclusão que comprova sua participação e aprendizado na Formação em Tarot Egípcio.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Posso usar o Tarot profissionalmente após a formação?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sim! A formação prepara você para atender clientes com segurança e responsabilidade. Você aprenderá técnicas profissionais, postura ética e como estruturar suas leituras.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Há suporte após o término da formação?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Sim! Você terá acesso à comunidade de alunos e poderá tirar dúvidas. Além disso, você pode revisar as aulas gravadas quantas vezes quiser durante 1 ano.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Qual é o investimento total?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>O investimento é de <strong>R$ 1.997,00</strong>, disponível em duas opções:
+                        <br><br>
+                        <strong>• À vista:</strong> R$ 1.997,00
+                        <br>
+                        <strong>• Parcelado:</strong> Até 12x no cartão de crédito (juros cobrados direto pela plataforma)
+                        <br><br>
+Além disso, esta será a única turma neste valor. A próxima já estará com o preço mais ajustado à realidade.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Preciso de algum material específico para começar?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Você precisará de um baralho de Tarot (pode ser qualquer um). Recomendamos o Tarot Egípcio ou o Rider-Waite. Todos os outros materiais serão fornecidos durante a formação.</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <div class="accordion-header">
+                        <h4>Como faço para me inscrever?</h4>
+                        <span class="accordion-icon">▼</span>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Preencha o formulário acima com seus dados. Você receberá um email com o link de pagamento e instruções para acessar a plataforma. Após a confirmação do pagamento, seu acesso será liberado imediatamente.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 15: ÚLTIMA CHAMADA -->
+    <section>
+        <div class="container">
+            <div class="card" style="text-align: center; background: linear-gradient(135deg, rgba(240, 147, 255, 0.2), rgba(181, 50, 167, 0.15)); border: 2px solid var(--color-accent-primary); padding: var(--spacing-2xl);">
+                <h2>Esta é sua última chance</h2>
+                <p style="font-size: 1.2rem; margin: var(--spacing-lg) 0;">O carrinho fecha em 16 dias e a turma é limitada a 12 pessoas.</p>
+                <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-lg);">Cada vaga é uma oportunidade de transformação. Não deixe para depois.</p>
+                <button onclick="document.getElementById('formulario').scrollIntoView({behavior: 'smooth'})" style="font-size: 1.2rem; padding: 1.2rem 3rem;">Garantir Minha Vaga Agora</button>
+                    <p style="margin-top: var(--spacing-lg); font-size: 0.95rem; color: var(--color-text-muted);">Início: 07.04 (terça-feira) às 19h30</p>
+                    <a href="https://wa.me/message/IIDP2UQGZTACI1" target="_blank" style="display: inline-block; margin-top: var(--spacing-md); padding: 0.8rem 1.5rem; background: #25D366; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#20BA5A'" onmouseout="this.style.background='#25D366'">💬 Tirar Dúvidas no WhatsApp</a>
+            </div>
+
+            <div class="divider"></div>
+
+            <div style="text-align: center; margin-top: var(--spacing-2xl);">
+                <img src="logo-branca.png" alt="Logo Kátia Henriques" style="max-height: 120px; width: auto; margin-bottom: var(--spacing-lg); opacity: 0.9;">
+                <p style="color: var(--color-text-muted); margin-bottom: var(--spacing-md);">Desenvolvendo o potencial humano através do Tarot Egípcio</p>
+                <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: var(--spacing-lg);">© KÁTIA HENRIQUES | Todos os direitos reservados</p>
+                <a href="https://wa.me/message/IIDP2UQGZTACI1" target="_blank" style="display: inline-block; padding: 0.8rem 1.5rem; background: #25D366; color: white; border-radius: 25px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;" onmouseover="this.style.background='#20BA5A'" onmouseout="this.style.background='#25D366'">💬 Tirar Dúvidas no WhatsApp</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- STICKY CTA - MOBILE ONLY -->
+    <button class="sticky-cta" onclick="document.getElementById('formulario').scrollIntoView({behavior: 'smooth'})">Quero Participar</button>
+
+    <script>
+        // NAVBAR SCROLL
+        const navbar = document.getElementById('navbar');
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', () => {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 100) {
+                navbar.classList.add('visible');
+            } else {
+                navbar.classList.remove('visible');
+            }
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+        });
+
+        // ACORDEÃO
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                accordionItems.forEach(other => {
+                    if (other !== item) {
+                        other.classList.remove('active');
+                    }
+                });
+                item.classList.toggle('active');
+            });
+        });
+
+        // FORMULÁRIO
+        const leadForm = document.getElementById('leadForm');
+        const LEADS_ENDPOINT = "https://script.google.com/macros/s/AKfycbxBUQIgx3YNPVkBLEaLX4ajNqvweLr8K3fLCFZ2Cvb-5VAB63GFd3J6xfLbTpNOpta-Yw/exec";
+
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const formData = new FormData();
+            formData.append('nome', document.getElementById('nome').value);
+            formData.append('email', document.getElementById('email').value);
+            formData.append('telefone', document.getElementById('telefone').value);
+            formData.append('pagamento', document.getElementById('pagamento').value);
+            formData.append('origem', document.getElementById('origem').value);
+
+            fetch(LEADS_ENDPOINT, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            }).then(function() {
+                // Mostra mensagem de sucesso
+                const successMsg = document.createElement('div');
+                successMsg.style.position = 'fixed';
+                successMsg.style.top = '20px';
+                successMsg.style.left = '50%';
+                successMsg.style.transform = 'translateX(-50%)';
+                successMsg.style.background = 'linear-gradient(135deg, #f093ff, #aa096a)';
+                successMsg.style.color = '#3f1c47';
+                successMsg.style.padding = '1.5rem 2rem';
+                successMsg.style.borderRadius = '10px';
+                successMsg.style.fontWeight = '600';
+                successMsg.style.zIndex = '10000';
+                successMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                successMsg.style.fontSize = '1rem';
+                successMsg.style.maxWidth = '90%';
+                successMsg.textContent = 'Inscricao enviada com sucesso! Logo nossa equipe entrara em contato';
+                document.body.appendChild(successMsg);
+
+                // Remove a mensagem apos 5 segundos
+                setTimeout(function() {
+                    successMsg.remove();
+                }, 5000);
+
+                // Limpa o formulario
+                leadForm.reset();
+            }).catch(function(error) {
+                console.error('Erro:', error);
+                const errorMsg = document.createElement('div');
+                errorMsg.style.position = 'fixed';
+                errorMsg.style.top = '20px';
+                errorMsg.style.left = '50%';
+                errorMsg.style.transform = 'translateX(-50%)';
+                errorMsg.style.background = '#e74c3c';
+                errorMsg.style.color = 'white';
+                errorMsg.style.padding = '1.5rem 2rem';
+                errorMsg.style.borderRadius = '10px';
+                errorMsg.style.fontWeight = '600';
+                errorMsg.style.zIndex = '10000';
+                errorMsg.style.boxShadow = '0 10px 30px rgba(0,0,0,0.3)';
+                errorMsg.style.fontSize = '1rem';
+                errorMsg.style.maxWidth = '90%';
+                errorMsg.textContent = 'Erro ao enviar. Verifique sua conexao e tente novamente.';
+                document.body.appendChild(errorMsg);
+
+                setTimeout(function() {
+                    errorMsg.remove();
+                }, 5000);
+            });
+        });
+    </script>
+</body>
+</html>
